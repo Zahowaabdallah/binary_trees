@@ -11,12 +11,11 @@ int binary_tree_is_complete(const binary_tree_t *tree)
 		return (0);
 	if (tree != NULL)
 	{
-		if (tree->left != NULL && tree->left->left != NULL)
-			return (0);
-		if (tree->left->right != NULL && tree->right != NULL)
-			return (0);
-		if (tree->right->left != NULL && tree->right->right != NULL)
-			return (0);
+		if (tree->left == NULL && tree->right == NULL)
+			return (1);
+		if (tree->left != NULL && tree->right != NULL)
+			return (binary_tree_is_complete(tree->left) &&
+					binary_tree_is_complete(tree->right));
 	}
-	return (1);
+	return (0);
 }
